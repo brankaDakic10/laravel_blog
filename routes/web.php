@@ -17,6 +17,20 @@ Route::get('/', function () {
 });
 // all posts
 Route::get('/posts','PostsController@index')->name('all-posts');
+// the same code,other way of writing
+// Route::get('/posts',['as'=>'all-posts','uses'=>'PostsController@index']);
+
+
+
+///new route                  name of the route,not necessary now
+Route::get('/posts/create',['as'=>'create-post','uses'=>'PostsController@create']);
+//the same code,other way of writing
+// Route::get('/posts/create','PostsController@create');
 
 ////for single post
 Route::get('/posts/{id}','PostsController@show' )->name('single-post');
+// Route::get('/posts/{id}',['as'=>'single-post','uses'=>'PostsController@show']);
+
+///new route  
+Route::post('/posts','PostsController@store');
+       

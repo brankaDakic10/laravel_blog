@@ -18,12 +18,46 @@ class PostsController extends Controller
 
    public function show($id)
    {
-         $post=Post::find($id);
-    
+        //  $post=Post::find($id);
+        //        dd($post->comments);
+       $post=Post::with('comments')->find($id);
+//        $brojKomentara=$post->comments->count();
         return view('posts.show',compact(['post']));
+   }
+  
+
+   //add new action
+   public function create(){
+
+         return view('posts.create');
    }
 
 
+   //add new action
+   public function store(){
+        
+                //  dd(request()->all());
+                //  za jedno polje
+                //  dd(request()->get('title'));
+                // $post=new Post();
+                // $post->title=request()->get('title');
+                // $post->body=request()->get('body'); 
+                // //   pogledaj ime za ovo polje,def u migraciji za to polje(is_published),
+                // //  kod get metode ('name iz forme')
+                // $post->is_published=request()->get('published');
+                // ///cuva u bazi
+                // $post->save();
+
+                
+               $this->validate(request(),[
+                'title'=>'required',
+                'body'=> 'required|min:15'
+               ]);
+        //      ovo menja sve prethodno
+                Post::create(request()->all());
+                ///redirekcija
+                return redirect()->route('all-posts');
+           }
 }
 
 
