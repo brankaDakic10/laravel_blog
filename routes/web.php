@@ -34,3 +34,5 @@ Route::get('/posts/{id}','PostsController@show' )->name('single-post');
 ///new route  
 Route::post('/posts','PostsController@store');
        
+//new route
+Route::post('/posts/{post_id}/comments',['as'=>'comments-post','uses'=>'CommentsController@store']);
