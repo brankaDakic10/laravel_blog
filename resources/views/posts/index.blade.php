@@ -19,6 +19,10 @@ Posts
           <div class="blog-post">
             <h3 class="blog-post-title"><a href="{{route('single-post',['id'=>$post->id])}}">{{$post->title}}</a></h3>
             <p class="blog-post-meta">{{$post->created_at}}</p>
+            <!-- added -->
+            <!-- dodaj if(post->user) code ukoliko nemamo ime korisnika
+             koji je kreirao post da preskoci taj deo -->
+            <p> @if($post->user)<i><a href="#">by {{$post->user->name}}</a></i>@endif</p>
              <p>{{$post->body}}</p>
           </div><!-- /.blog-post -->
           @endforeach

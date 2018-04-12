@@ -13,6 +13,19 @@
     <div class="blog-header">
       <div class="container">
         <h1 class="blog-title">Laravel Blog</h1>
+        <!-- add -->
+        @if(Auth::check())
+        <div >{{Auth()->user()->name}}</div>
+       
+        <!-- add -->
+        <a href="/logout">Logout</a>
+     <!-- add else  -->
+        @else
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        @endif
+
+
         <p class="lead blog-description">An example blog template built with Bootstrap.</p>
       </div>
     </div>

@@ -36,3 +36,16 @@ Route::post('/posts','PostsController@store');
        
 //new route
 Route::post('/posts/{post_id}/comments',['as'=>'comments-post','uses'=>'CommentsController@store']);
+
+
+//new route
+Route::get('/register', 'RegisterController@create');
+//route for submit forme register
+Route::post('/register', 'RegisterController@store');
+//new route and controller
+Route::get('/logout', 'LoginController@logout');
+//new         mora biti def ime zbog middleware-a u PostContolleru
+                                             
+Route::get('/login', 'LoginController@create')->name('login');
+//route for input in database
+Route::post('/login', 'LoginController@store');

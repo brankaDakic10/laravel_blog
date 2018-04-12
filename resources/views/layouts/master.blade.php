@@ -18,20 +18,20 @@
 
   <body>
 
-   @include('partials.header');
+   @include('partials.header')
 
     <div class="container">
 
       <div class="row">
 
         @yield('content')
-        @include('partials.sidebar');
+        @include('partials.sidebar')
        <!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
 
     </div><!-- /.container -->
-    @include('partials.footer');
+    @include('partials.footer')
     
 
   </body>
