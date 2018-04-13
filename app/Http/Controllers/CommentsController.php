@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 // add use
+use App\Mail\CommentReceived;
+// add use
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsController extends Controller
 {
@@ -15,6 +18,8 @@ class CommentsController extends Controller
      ]);
                                 // dodaje u bazu
      $post->comments()->create(request()->all());
+    //  added new                    nova instnca ove klase
+     Mail::to($post->user)->send(new CommentReceived($post));
      return redirect()->back();
  }
 }

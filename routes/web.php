@@ -49,3 +49,9 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/login', 'LoginController@create')->name('login');
 //route for input in database
 Route::post('/login', 'LoginController@store');
+
+//new route                                     and name important here
+Route::get('/users/{id}', 'UsersController@show')->name('users');
+
+///new route
+Route::get('/posts/tag/{tag}','TagsController@index')->name('posts-tags');

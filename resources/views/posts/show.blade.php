@@ -13,7 +13,7 @@
             <p class="blog-post-meta">{{$post->created_at}}</p>
              <p>{{$post->body}}</p>
           </div><!-- /.blog-post -->
-@if(count($post->comments))
+
  <hr> 
  <h4>Comments</h4>  
  <form action="{{route('comments-post',['post_id'=>$post->id])}}" method="POST">
@@ -32,7 +32,8 @@
  </div>
 
 
-</form>  
+</form>
+@if(count($post->comments))  
  <ul class="list-unstyled">
   @foreach($post->comments as $comment)
   

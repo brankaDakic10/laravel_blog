@@ -12,7 +12,14 @@
 
     <div class="blog-header">
       <div class="container">
-        <h1 class="blog-title">Laravel Blog</h1>
+        <h1 class="blog-title">Laravel Blog</h1> 
+      <!-- session start message kljuc -->
+        @if($message=session('message'))
+        <div class="alert alert-success">
+         {{$message}}
+        </div>
+        @endif
+        <!-- end of session -->
         <!-- add -->
         @if(Auth::check())
         <div >{{Auth()->user()->name}}</div>
@@ -26,6 +33,6 @@
         @endif
 
 
-        <p class="lead blog-description">An example blog template built with Bootstrap.</p>
+        <p class="lead blog-description">An example blog template </p>
       </div>
     </div>

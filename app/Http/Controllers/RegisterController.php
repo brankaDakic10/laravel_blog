@@ -11,6 +11,8 @@ class RegisterController extends Controller
     {        
                     //   ime middleware
         $this->middleware('guest');
+        // added custom midd     only for store method
+        $this->middleware('age',['only'=>'store']);
     }
   public function create(){
       return view('register.create');
@@ -33,6 +35,10 @@ $user->password=bcrypt(request('password'));
 $user->save();
             // dodaj korisnika
 auth()->login($user);
+
+//sesija
+session()->flash('message',
+'You have successfully!Thank you for registering!');
 
 return redirect('/posts');
 

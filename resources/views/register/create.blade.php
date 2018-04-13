@@ -28,6 +28,12 @@ Register
  <input type="password" id="password" name="password" class="form-control">
  @include('partials.error-message',['fieldTitle'=>'password'])
  </div>
+ <!-- add -->
+ <div class="form-group">
+ <label for="age">Age</label>
+ <input type="text" id="age" name="age" class="form-control">
+ </div>
+ <!-- end -->
  <div class="form-group">
  <button type="submit" class="btn btn-primary">Submit</button>
  </div>
