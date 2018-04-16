@@ -23,6 +23,7 @@ class Post extends Model
    
 
    public function user(){
+    //    connect relation between user and posts
        return $this->belongsTo('App\User');
    }
 

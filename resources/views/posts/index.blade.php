@@ -38,6 +38,14 @@ Posts
              <p>{{$post->body}}</p>
           </div><!-- /.blog-post -->
           @endforeach
+ 
+ <!-- add for pagination -->
+          <nav class="blog-pagination">
+                                       <!-- add for disable                        ovaj posts smo def u index metodi   posts->previousPageUrl = za postove dobijene metodom paginate -->
+        <a class="btn btn-outline-{{$posts->currentPage()== 1? 'secondary disabled':'primary'}}" href="{{$posts->previousPageUrl()}}">Previous</a>
+        <a class="btn btn-outline-{{$posts->hasMorePages()== 1? 'primary':'secondary disabled'}}" href="{{$posts->nextPageUrl()}}">Next</a>
+    </nav>
+
 
  </div><!-- /.blog-main -->
 

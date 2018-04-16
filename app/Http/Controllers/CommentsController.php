@@ -16,10 +16,11 @@ class CommentsController extends Controller
      $this->validate(request(),[
          'text' =>'required|min:15'
      ]);
-                                // dodaje u bazu
+        // dodaje novi komentar na taj post u bazu
      $post->comments()->create(request()->all());
     //  added new                    nova instnca ove klase
-     Mail::to($post->user)->send(new CommentReceived($post));
+        //   posalji user-u na njegov email
+     Mail::to($post->user->email)->send(new CommentReceived($post));
      return redirect()->back();
  }
 }

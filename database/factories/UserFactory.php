@@ -21,3 +21,21 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+//  add for post seeder,def postsSeeeder...how it will look
+$factory->define(App\Post::class, function (Faker $faker) {
+    return [
+    // koja polja imam
+        'title' => $faker->sentence(1,true),
+        'body' => $faker->text(200),
+        'is_published'=>true
+    ];
+});
+
+
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+    // ime polja koja imam u tabeli
+       'text' => $faker->text(100),
+       
+    ];
+});

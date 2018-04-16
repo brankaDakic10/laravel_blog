@@ -26,10 +26,26 @@ class PostsController extends Controller
    {
         //    dd(auth()->user());
            //   naziv same metode iz Post.php getPublished()
-           $posts=Post:: getPublished();
+        //        dodaj za paginaciju
+        //      postovi sa korisnicima
+           $posts=Post::with('user')->paginate(10);
+           //////end
+ 
+        // ovde kacimo na sam post user-a i mozemo da mu pristupimo 
+        // preko index.blade-a  $post->user 
+        //    $post=Post::with('user')->find(1);
+        //    $posts=Post::with('user')->paginate(3);
+
+        //  start  ovo je lazy 
+        //    $post=Post::find(1);
+        //    $post->user();
+           //  end of lazy 
+
+           //    provera koliko ima jos stranica?
            return view('posts.index',compact(['posts']));
            
    }
+
 
    public function show($id)
    {
