@@ -27,7 +27,7 @@ class Post extends Model
        return $this->belongsTo('App\User');
    }
 
-
+//  ova  fja se poziva pri kreiranju checkbox u posts-create.blade
    public function tags()
    {
        return $this->belongsToMany('App\Tag');

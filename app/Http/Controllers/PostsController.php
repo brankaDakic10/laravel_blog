@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-
+// add
+use App\Tag;
 class PostsController extends Controller
  {      
          // add middleware
@@ -28,7 +29,7 @@ class PostsController extends Controller
            //   naziv same metode iz Post.php getPublished()
         //        dodaj za paginaciju
         //      postovi sa korisnicima
-           $posts=Post::with('user')->paginate(10);
+           $posts=Post::with('user')->latest()->paginate(10);
            //////end
  
         // ovde kacimo na sam post user-a i mozemo da mu pristupimo 
@@ -59,12 +60,14 @@ class PostsController extends Controller
 
    //add new action
    public function create(){
-
-         return view('posts.create');
+        // add for tag
+        $tags=Tag::all();
+         return view('posts.create' ,compact(['tags']));
    }
 
 
-   //add new action
+   //add new action 
+//    add code za validaciju checbox-a sa tagovima
    public function store(){
         
                 //  dd(request()->all());
@@ -82,7 +85,9 @@ class PostsController extends Controller
                 
                $this->validate(request(),[
                 'title'=>'required',
-                'body'=> 'required|min:15'
+                'body'=> 'required|min:15',
+                //    add code za validaciju checbox-a
+                'tags'=> 'required|array'
                ]);
         //      ovo menja sve prethodno
               //  Post::create(request()->all());
@@ -95,7 +100,12 @@ class PostsController extends Controller
         $post->body=request()->get('body');
         $post->user_id=auth()->user()->id;
         $post->is_published=request()->get('is_published');
+        // $post->is_published=false;
         $post->save();
+        //   za ove tagove nakaci izabrane tagove na post,upis u pivot tabelu
+        $post->tags()->attach(request('tags'));
+        // za prikaz info u laravel.log
+        // \Log::info($post->tags()->get());
         ///redirekcija
                 return redirect()->route('all-posts');
            }

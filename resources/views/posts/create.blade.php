@@ -24,11 +24,24 @@ Create new post
  <textarea class="form-control" id="body"  name="body" ></textarea>
  @include('partials.error-message',['fieldTitle'=>'body'])
  </div>
- <div class="form-group">
- <label for="published">Objavi?</label>    
-                                                                 <!-- add value here -->
- <input type="checkbox" id="published" name="is_published" class="form-control" value="1">
- </div>
+
+
+ <!-- add checkbox for tag -->
+ <!-- ukoliko ima tag-ova kreiraj div -->
+ @if (count($tags))
+
+  <div class="form-group">
+  <label for="tags()">TAGS</label>  <br>
+
+  @foreach($tags as $tag)
+  <input type="checkbox" id="tag" name="tag" 
+  class="form-control" value="{{$tag->id}}">{{$tag->name}}
+  @endforeach
+  </div>
+ @endif
+
+
+ <!--  -->
  <div class="form-group">
  <button type="submit" class="btn btn-primary">Submit</button>
  </div>

@@ -13,7 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // dodaj -da vrati tagove
+      view()->composer('layouts.master', function($view){
+        //   izvuci sve tagove iz baze i nasetuj ih na view
+          $tags=\App\Tag::has('posts')->get();
+
+          $view->with(compact('tags'));
+      });
+      ///
     }
 
     /**
